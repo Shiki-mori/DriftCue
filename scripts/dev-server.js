@@ -9,7 +9,13 @@ const server = http.createServer(async (req, res) => {
     try { JSON.parse(data); await mkdir('artifacts', { recursive: true }); await appendFile('artifacts/browser-events.jsonl', `${data}\n`); res.writeHead(204).end(); }
     catch { res.writeHead(400).end(); } return;
   }
-  const routes = { '/': ['tests/fixtures/page.html','text/html; charset=utf-8'], '/fixture.js':['tests/fixtures/fixture.js','text/javascript; charset=utf-8'] };
+  const routes = {
+    '/': ['tests/fixtures/page.html','text/html; charset=utf-8'],
+    '/fixture.js':['tests/fixtures/fixture.js','text/javascript; charset=utf-8'],
+    '/animation':['tests/fixtures/animation.html','text/html; charset=utf-8'],
+    '/animation.js':['tests/fixtures/animation.js','text/javascript; charset=utf-8'],
+    '/content-under-test.js':['extension/content.js','text/javascript; charset=utf-8']
+  };
   const uiFiles = new Set(['options.html','popup.html','ui.css','ui.js','core.js','options.js','popup.js']);
   if(pathname==='/ui/bridge.js') routes[pathname]=['tests/fixtures/ui-bridge.js','text/javascript; charset=utf-8'];
   if(pathname.startsWith('/ui/')&&uiFiles.has(pathname.slice(4))) {

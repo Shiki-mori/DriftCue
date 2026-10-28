@@ -5,6 +5,7 @@
 - `core.js`：默认配置、规范化、域名边界、有效值校验、等概率抽取、纯调度状态转换。
 - `background.js`：唯一串行调度入口、权限/动态内容脚本注册、标签和窗口协调、持久化与 UI 消息。所有状态写入经 Promise 队列，避免多标签同时触发重复提醒。
 - `content.js`：顶层页面内单例、封闭 Shadow DOM、随机位置和视口约束、自动消失、可见性/全屏事件、到期通知。卡片 DOM 只使用 `textContent`，设置内联重要样式和 `pointer-events:none`，不插入可聚焦控件。
+- 卡片动画作用于 Shadow DOM 内部容器，避免与宿主节点隔离网页样式用的 `opacity:1!important` 冲突。CSS 关键帧在配置的总时长内完成 180ms 淡入、220ms 淡出，不添加延迟移除计时器；强制清除和替换仍立即移除，`prefers-reduced-motion: reduce` 时禁用动画。
 - `popup` / `options`：本地扩展页面，静态 HTML/CSS 和本地 ES modules，无远程代码。保存前前后端双重校验，字段错误保留输入和上次有效配置。
 
 ## 调度

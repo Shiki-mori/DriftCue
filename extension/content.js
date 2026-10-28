@@ -46,7 +46,11 @@
       const shadow = host.attachShadow({ mode: 'closed' }), style = document.createElement('style'), card = document.createElement('div');
       const { backgroundColor, textColor, transparency, durationSeconds } = message.config;
       const rgb = backgroundColor.match(/\w\w/g).map(x => parseInt(x, 16));
-      style.textContent = `:host,:host *{pointer-events:none!important;box-sizing:border-box}div{font:400 16px/1.65 system-ui,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere;padding:18px 20px;border-radius:16px;background:rgba(${rgb.join(',')},${1 - transparency / 100});color:${textColor};max-height:inherit;overflow:hidden}`;
+      // Animate the inner card: the host's important opacity keeps page CSS isolated.
+      // Both fades fit inside the configured lifetime; forced dismissal stays instant.
+      const fadeInEnd = 180 / (durationSeconds * 1000) * 100;
+      const fadeOutStart = 100 - 220 / (durationSeconds * 1000) * 100;
+      style.textContent = `:host,:host *{pointer-events:none!important;box-sizing:border-box}div{font:400 16px/1.65 system-ui,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere;padding:18px 20px;border-radius:16px;background:rgba(${rgb.join(',')},${1 - transparency / 100});color:${textColor};max-height:inherit;overflow:hidden;animation:drift-cue-fade ${durationSeconds}s linear both}@keyframes drift-cue-fade{0%{opacity:0;animation-timing-function:ease-out}${fadeInEnd}%{opacity:1}${fadeOutStart}%{opacity:1;animation-timing-function:ease-in}100%{opacity:0}}@media(prefers-reduced-motion:reduce){div{animation:none}}`;
       card.textContent = message.text; shadow.append(style, card); document.documentElement.append(host);
       position(true); timer = setTimeout(() => remove(), durationSeconds * 1000); reply({ ok: true });
     } else if (message.type === 'PLAN') { deadline = message.dueAt; arm(); reply({ ok: true }); }
