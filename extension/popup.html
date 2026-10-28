@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DriftCue</title><link rel="stylesheet" href="ui.css"></head>
+<body class="popup"><header class="row between"><div class="brand">DriftCue<span>觉察此刻</span></div><label class="check"><input type="checkbox" id="enabled" aria-label="全局提醒开关">开启</label></header>
+<h1>让注意力，回到此刻。</h1><p class="muted">一张轻轻的提醒，留一点选择的空间。</p>
+<section class="status"><div class="row between"><strong id="domain">当前网页</strong><span class="badge" id="status">正在读取</span></div><p class="muted" id="detail"></p><button id="grant" hidden>授权本站访问</button></section>
+<label for="minutes">本次暂停时长（分钟）</label><div class="row"><input id="minutes" type="number" min="1" max="1440"><button id="pause" class="primary">暂时关闭本站</button><button id="resume" hidden>立即恢复</button></div>
+<p class="error" id="minutes-error" role="alert"></p><div class="actions"><button id="dismiss">关闭当前卡片</button><button id="preview">立即预览</button></div>
+<div id="notice" class="notice" role="status" aria-live="polite"></div><footer class="row between"><span class="muted">数据只在本机 · 无统计</span><button id="settings" class="quiet">打开设置 ↗</button></footer><script type="module" src="popup.js"></script></body></html>

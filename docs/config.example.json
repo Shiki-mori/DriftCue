@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "enabled": true,
+  "intervalSeconds": 120,
+  "durationSeconds": 4,
+  "backgroundColor": "#FFF3CD",
+  "textColor": "#222222",
+  "transparency": 50,
+  "pauseMinutes": 10,
+  "messages": ["你在做什么呢？", "把注意力，带回此刻。"],
+  "sites": [
+    { "id": "bilibili", "name": "bilibili", "domain": "bilibili.com", "subdomains": true, "enabled": true },
+    { "id": "youtube", "name": "YouTube", "domain": "youtube.com", "subdomains": true, "enabled": false }
+  ],
+  "pauses": {}
+}

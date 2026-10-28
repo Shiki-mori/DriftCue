@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "DriftCue · 觉察此刻",
+  "version": "1.0.0",
+  "minimum_chrome_version": "120",
+  "description": "在你选择的网站，给注意力一张轻轻的提醒。数据仅保存在本机。",
+  "permissions": ["storage", "alarms", "scripting", "activeTab"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "popup.html", "default_title": "DriftCue" },
+  "options_page": "options.html",
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'self'" }
+}

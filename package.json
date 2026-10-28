@@ -1,0 +1,13 @@
+{
+  "name": "driftcue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check.js",
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev-server.js"
+  },
+  "engines": { "node": ">=20" }
+}
